@@ -1,4 +1,5 @@
 package com.fiap.ec.backend_consultas.controller;
+import com.fiap.ec.backend_consultas.model.Especialidade;
 import com.fiap.ec.backend_consultas.model.Paciente;
 import com.fiap.ec.backend_consultas.service.PacienteService;
 import org.springframework.web.bind.annotation.*;
@@ -22,5 +23,24 @@ public class PacienteController {
     @GetMapping("/{id}")
     public Paciente buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
+    }
+    @PutMapping("/{id}")
+    public Paciente atualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
+        return service.atualizar(id, paciente);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
+    }
+
+    @PutMapping("/{id}")
+    public Especialidade atualizar(@PathVariable Long id, @RequestBody Especialidade especialidade) {
+        return service.atualizar(id, especialidade);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }
