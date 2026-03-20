@@ -3,6 +3,7 @@ package com.fiap.ec.backend_consultas.controller;
 import com.fiap.ec.backend_consultas.model.Especialidade;
 import com.fiap.ec.backend_consultas.service.EspecialidadeService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -31,15 +32,13 @@ public class EspecialidadeController {
         return service.buscarPorId(id);
     }
 
-    public Especialidade atualizar(Long id, Especialidade especialidadeAtualizada) {
-        Especialidade especialidadeExistente = buscarPorId(id);
-        especialidadeExistente.setNome(especialidadeAtualizada.getNome());
-        especialidadeExistente.setDescricao(especialidadeAtualizada.getDescricao());
-        return repository.save(especialidadeExistente);
+    @PutMapping("/{id}")
+    public Especialidade atualizar(@PathVariable Long id, @RequestBody Especialidade especialidade) {
+        return service.atualizar(id, especialidade);
     }
 
-    public void deletar(Long id) {
-        Especialidade especialidade = buscarPorId(id);
-        repository.delete(especialidade);
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }
